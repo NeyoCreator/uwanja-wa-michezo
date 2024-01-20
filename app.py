@@ -29,6 +29,15 @@ def consumption():
 def device():
     return render_template('device.html')
 
+@app.route('/installer')
+def installer():
+    return render_template('installer.html')
+
+@app.route('/delivery')
+def delivery():
+    return render_template('delivery.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
