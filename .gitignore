@@ -1,1 +1,2 @@
-env
+# Ignore virtual environment
+env/
