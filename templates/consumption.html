@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styling for selected items */
+        #selectedAppliances .badge {
+            padding: 0.375rem 0.75rem; /* Adjusted padding */
+            margin-right: 0.5rem;
+            border: 1px solid #343a40; /* Added stroke */
+        }
+    </style>
 </head>
 <body>
 
@@ -40,6 +48,9 @@
             <div id="selectedAppliances" class="mt-2"></div>
             <!-- Total Watt Display -->
             <div id="totalWattDisplay" class="mt-2"></div>
+
+            <!-- Next Button -->
+            <button type="button" class="btn btn-dark mt-2">Next</button>
         </form>
 
         <!-- Appliance Modal -->
