@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>landing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #D2691E;
+        }
+
+        .navbar {
+            background-color: #000;
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #d78245;
+        }
+
+        .navbar-nav .nav-link {
+            color: #e38644;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FFF;
+        }
+
+        .jumbotron {
+            background-color: #000;
+            color: #e88a47;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .cta-section {
+            background-color: #000;
+            color: #d6854b;
+        }
+
+        .cta-content {
+            padding: 50px;
+        }
+
+        .cta-button {
+            margin-top: 20px;
+        }
+
+        .cta-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container.product-section {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+.frame-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.frame {
+    width: 80%; 
+    box-sizing: border-box;
+    border: 1px;
+    background-color: #3e2d0f;
+    margin-bottom: 1rem;
+}
+
+.inner {
+    height: 80%;
+    box-sizing: border-box;
+    padding: 1rem;
+    text-align: left;
+    color: #141210;
+}
+
+.price-box {
+    background-color: #eab85b;
+    color: rgb(10, 9, 9);
+    padding: 9px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+        
+    
+        
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <b></b><a class="navbar-brand" href="#">MWANGA</a></b>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home" onclick="showSection('home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" onclick="showSection('about')">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#product" onclick="showSection('product')">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact" onclick="showSection('contact')">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron text-center section" id="home">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="path/to/your/image.jpg" alt="Image" class="cta-img">
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h1 class="display-4">WELCOME TO MWANGA</h1>
+                <p class="lead">Unleash the untapped potential of renewable energy in Africa-<br>
+                    Igniting the shift to renewable energies and powering progress. Accelerate the transition<br>
+                    light up the future!</p>
+                <a class="btn btn-warning btn-lg" href="/index" role="button">Join Us</a><br><br>
+                <p>Unveil the secrets of our groundbreaking solution<br>Curiosity ignited?<br>
+                    EXPLORE THE POWER WITHIN!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section" id="about">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About us</h2>
+                <p>we are...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section product-section" id="product">
+        <div class='row'>
+            <div class="col-md-6">
+                <h3>Product Information</h3>
+            </div>
+            <div class="col-md-6">
+                <br>
+                <br>
+                <p>This is our initial product plan </p>
+            </div>
+            <div class="col-md-6 col-12 frame-container">
+                <div class="frame mb-4">
+                    <div class="inner">
+                        <h2 class='name' style="-webkit-text-fill-color: #0a0909;">Compact</h2>
+                        <ul>
+                            <li>fast-charging</li>
+                            <li>limited power output</li>
+                            <li>smart monitoring</li>
+                            <li>Average efficiency</li>
+                        </ul>
+                    </div>
+                    <div class="price-box">
+                        <h4>R199.99</h4>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>this is our first plan</p>
+                </div>
+                
+                <div class="frame">
+                    <div class="inner">
+                        <h2 class="name" style="-webkit-text-fill-color: #0a0909;">Premium</h2>
+                        <ul>
+                            <li>Enhanced features for professionals</li>
+                            <li>Extended battery life</li>
+                            <li>Ultra-fast processing</li>
+                            <li>Stylish and durable design</li>
+                        </ul>
+                        <div class="price-box">
+                            <h4>R299.99</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section" id="contact">
+        <h2>Contact Us Section</h2>
+        <p>contact....</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('home');
+        });
+
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            var selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

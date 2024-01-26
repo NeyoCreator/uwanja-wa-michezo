@@ -3,7 +3,7 @@ import json
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Change this to an actual secret key for production use
+app.secret_key = 'secret_data'  # Change this to an actual secret key for production use
 
 def save_to_json(data):
     file_path = 'data.json'
@@ -18,11 +18,43 @@ def save_to_json(data):
             json.dump([data], file, indent=4)
 
 @app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/index', methods = ['GET','POST'])
 def index():
+    print("Hello")
+    if request.method == 'POST':
+        name =  request.form.get('name')
+        email = request.form.get('email')
+        location = request.form.get('location')
+
+        session['user_data'] = {'name': name, 'email': email, 'location': location}
+        print(session)
+        # redirect(url_for('consumption'))
+        return redirect(url_for('consumption'))
+
+
     return render_template('index.html')
 
-@app.route('/consumption')
+@app.route('/consumption', methods = ['GET','POST'])
 def consumption():
+    if request.method == 'POST':
+        # Retrieve data from the form
+        selected_appliances = request.form.get('selectedAppliances')
+        total_wattage = request.form.get('totalWatt')
+
+        # Do something with the data, for example, save it to a JSON file
+        consumption_data = {
+            'selected_appliances': selected_appliances.split(','),
+            'total_wattage': total_wattage
+        }
+        print('consumtion_data',consumption_data)
+        # save_to_json(consumption_data)
+
+        # Redirect to the next page or perform other actions
+        return redirect(url_for('device'))
+    
     return render_template('consumption.html')
 
 @app.route('/device')

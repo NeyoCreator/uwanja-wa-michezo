@@ -41,17 +41,22 @@
         <h3 class="mb-4">How much power do you generate?</h3>
 
         <!-- Input Form -->
-        <form action="" method="post">
-            <!-- Your form fields go here -->
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button>
-            <!-- Selected Appliances -->
-            <div id="selectedAppliances" class="mt-2"></div>
-            <!-- Total Watt Display -->
-            <div id="totalWattDisplay" class="mt-2"></div>
+         <!-- Input Form -->
+    <form action="{{ url_for('consumption') }}" method="post">
+        <!-- Your form fields go here -->
+        <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
+        <input type="hidden" id="totalWattInput" name="totalWatt" value="">
 
-            <!-- Next Button -->
-            <button type="button" class="btn btn-dark mt-2">Next</button>
-        </form>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button>
+
+        <!-- Selected Appliances -->
+        <div id="selectedAppliances" class="mt-2"></div>
+        <!-- Total Watt Display -->
+        <div id="totalWattDisplay" class="mt-2"></div>
+
+        <!-- Next Button -->
+        <button type="submit" class="btn btn-dark mt-2">Next</button>
+    </form>
 
         <!-- Appliance Modal -->
         <div class="modal fade" id="applianceModal" tabindex="-1" role="dialog" aria-labelledby="applianceModalLabel"
@@ -101,20 +106,23 @@
 
     <!-- Custom Script -->
     <script>
-        // Handle Appliance Selection
         $(document).ready(function () {
             $(".list-group-item").click(function () {
                 var selectedAppliance = $(this).text();
                 var wattage = parseInt($(this).data("wattage"));
                 $("#selectedAppliances").append('<span class="badge badge-dark mr-2">' + selectedAppliance + '</span>');
-                
+    
                 // Calculate and display total wattage
                 var totalWattage = 0;
                 $("#selectedAppliances .badge").each(function () {
                     totalWattage += wattage;
                 });
                 $("#totalWattDisplay").text("Total Watt: " + totalWattage + " W");
-
+    
+                // Update hidden input fields
+                $("#selectedAppliancesInput").val($("#selectedAppliances").text());
+                $("#totalWattInput").val(totalWattage);
+                
                 $("#applianceModal").modal("hide");
             });
         });
