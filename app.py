@@ -49,7 +49,8 @@ def consumption():
             'selected_appliances': selected_appliances.split(','),
             'total_wattage': total_wattage
         }
-        print('consumtion_data',consumption_data)
+        session['consumption_data'] = consumption_data
+        print(session)
         # save_to_json(consumption_data)
 
         # Redirect to the next page or perform other actions
@@ -57,15 +58,46 @@ def consumption():
     
     return render_template('consumption.html')
 
-@app.route('/device')
+@app.route('/device', methods=['GET', 'POST'])
 def device():
+    if request.method == 'POST':
+        # Retrieve data from the form
+        component_list = request.form.get('componentList')
+
+        # Do something with the data, for example, save it to a JSON file
+        device_data = {
+            'component_list': component_list.split(',')
+        }
+        session['device_data'] = device_data
+        print("session",session)
+        # save_to_json(device_data)
+
+        # Redirect to the next page or perform other actions
+        return redirect(url_for('installer'))
+
+
     return render_template('device.html')
 
-@app.route('/installer')
+@app.route('/installer',methods = ['GET','POST'])
 def installer():
+    if request.method == 'POST':
+        # Retrieve data from the form
+        installer_name = request.form.get('installer_name')
+        installer_rating = request.form.get('installer_rating')
+
+        # Do something with the data, for example, save it to a JSON file
+        installer_data = {
+            'installer_name': installer_name,
+            'installer_rating': installer_rating
+        }
+        session['installer_data'] = installer_data
+        print("session", session)
+
+        # Redirect to the next page or perform other actions
+        return redirect(url_for('delivery'))
     return render_template('installer.html')
 
-@app.route('/delivery')
+@app.route('/delivery', methods=['GET','POST'])
 def delivery():
     return render_template('delivery.html')
 

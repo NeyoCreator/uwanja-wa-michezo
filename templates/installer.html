@@ -21,16 +21,12 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-dark navbar-1 bg-dark">
-        <!-- Navbar brand -->
         <a class="navbar-brand" href="#">Mwanga Energies</a>
-        <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
           aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent15">
-          <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -42,51 +38,44 @@
               <a class="nav-link" href="#">Pricing</a>
             </li>
           </ul>
-          <!-- Links -->
         </div>
-        <!-- Collapsible content -->
     </nav>
-    
-    <!-- <div class="container mt-3"> -->
-        <!-- <h3>Installer Details</h3> -->
 
-        <!-- Card with Installer Details -->
-        <!-- <div class="card">
-            <img src="installer_image.jpg" class="card-img-top" alt="Installer Image">
+    <!-- Installer Cards -->
+    <div class="container mt-3">
+        <h3>Select an Installer</h3>
+
+        <!-- Installer Cards -->
+        <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Installer Name</h5>
-                <p class="card-text">Rating: 4 out of 5 stars</p>
+                <h5 class="card-title">Cedrick Ledwaba</h5>
+                <p class="card-text">Cedrick Ledwaba is a dedicated solar panel installer working for Company X...</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Rating: 4/5 stars</li>
+                </ul>
+                <form action="{{ url_for('installer') }}" method="post">
+                    <input type="hidden" name="installer_name" value="Cedrick Ledwaba">
+                    <input type="hidden" name="installer_rating" value="4/5 stars">
+                    <button type="submit" class="btn btn-dark select-btn">Select</button>
+                </form>
             </div>
-            <button class="btn btn-primary select-btn">Select</button>
-        </div> -->
-    <!-- </div> -->
-
-    <div class="card" style="width: 18rem;">
-        <!-- <img src="images/image.jpg" class="card-img-top" alt="..."> -->
-        <div class="card-body">
-            <h5 class="card-title">Cedrick Ledwaba</h5>
-            <p class="card-text">Cedrick Ledwabais a dedicated solar panel installer working for Company X. With years of experience in the renewable energy industry, John has successfully installed solar panels for numerous clients. He is known for his attention to detail and commitment to providing high-quality installations.</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Rating: 4/5 stars</li>
-            </ul>
-            <button class="btn btn-dark">Select</button>
-
         </div>
 
-        
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <!-- <img src="images/image.jpg" class="card-img-top" alt="..."> -->
-        <div class="card-body">
-            <h5 class="card-title">Philimon Sekhabi</h5>
-            <p class="card-text">Philimon Sekhabi is a dedicated solar panel installer working for Company X. With years of experience in the renewable energy industry, John has successfully installed solar panels for numerous clients. He is known for his attention to detail and commitment to providing high-quality installations.</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Rating: 3/5 stars</li>
-            </ul>
-            <button class="btn btn-dark">Select</button>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Philimon Sekhabi</h5>
+                <p class="card-text">Philimon Sekhabi is a dedicated solar panel installer working for Company X...</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Rating: 3/5 stars</li>
+                </ul>
+                <form action="{{ url_for('installer') }}" method="post">
+                    <input type="hidden" name="installer_name" value="Philimon Sekhabi">
+                    <input type="hidden" name="installer_rating" value="3/5 stars">
+                    <button type="submit" class="btn btn-dark select-btn">Select</button>
+                </form>
+            </div>
         </div>
-      </div>
+    </div>
 
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
