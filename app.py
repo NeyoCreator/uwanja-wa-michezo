@@ -4,12 +4,17 @@ import os
 from google.cloud import firestore
 from firebase_admin import credentials, firestore
 
+import firebase_admin
+
 app = Flask(__name__)
 app.secret_key = 'secret_data'  # Change this to an actual secret key for production use
 
 # database intergration
 cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
+
+# Database
+db = firestore.client()
 
 def save_to_json(data):
     file_path = 'data.json'
@@ -97,9 +102,11 @@ def installer():
             'installer_rating': installer_rating
         }
         session['installer_data'] = installer_data
-        print("session", session)
+        # print("session", session)
 
-        # db.collection(email).document("user_data").set(user_data)
+        db.collection(session['user_data']['email']).document("data").set(session)
+        print(session['user_data']['email'])
+        
 
         # Redirect to the next page or perform other actions
         return redirect(url_for('delivery'))
