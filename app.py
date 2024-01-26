@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import json
 import os
+from google.cloud import firestore
+from firebase_admin import credentials, firestore
 
 app = Flask(__name__)
 app.secret_key = 'secret_data'  # Change this to an actual secret key for production use
+
+# database intergration
+cred = credentials.Certificate("credentials.json")
+firebase_admin.initialize_app(cred)
 
 def save_to_json(data):
     file_path = 'data.json'
@@ -92,6 +98,8 @@ def installer():
         }
         session['installer_data'] = installer_data
         print("session", session)
+
+        # db.collection(email).document("user_data").set(user_data)
 
         # Redirect to the next page or perform other actions
         return redirect(url_for('delivery'))
