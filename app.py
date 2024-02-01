@@ -1,8 +1,4 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from authlib.integrations.flask_client import OAuth
-import json
-import os
-from google.cloud import firestore
 from firebase_admin import credentials, firestore
 import firebase_admin
 
