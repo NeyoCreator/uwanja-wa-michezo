@@ -41,7 +41,6 @@
         <h3 class="mb-4">How much power do you generate?</h3>
 
         <!-- Input Form -->
-         <!-- Input Form -->
     <form action="{{ url_for('consumption') }}" method="post">
         <!-- Your form fields go here -->
         <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
@@ -53,6 +52,16 @@
         <div id="selectedAppliances" class="mt-2"></div>
         <!-- Total Watt Display -->
         <div id="totalWattDisplay" class="mt-2"></div>
+
+        <!-- Dropdown for Backup Hours -->
+        <div class="form-group mt-2">
+            <label for="backupHours">How many hours would you like to back up?</label>
+            <select class="form-control" id="backupHours" name="backupHours">
+                <option value="2">2 hours</option>
+                <option value="6">6 hours</option>
+                <option value="8">8 hours</option>
+            </select>
+        </div>
 
         <!-- Next Button -->
         <button type="submit" class="btn btn-dark mt-2">Next</button>

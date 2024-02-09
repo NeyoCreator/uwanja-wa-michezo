@@ -1,11 +1,19 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
 import firebase_admin
+from flask_mail import Mail, Message
 
 
 # App initialisation
 app = Flask(__name__)
 app.secret_key = 'secret_data'
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'  # Change this to your SMTP server
+app.config['MAIL_PORT'] = 587  # Change this to your SMTP port
+app.config['MAIL_USE_TLS'] = True  # Change this according to your SMTP configuration
+app.config['MAIL_USERNAME'] = 'neo.andersonseb@gmail.com'  # Change this to your email username
+app.config['MAIL_PASSWORD'] = 'bchq cmov kqtm ixcx'  # Change this to your email password
+mail = Mail(app)
+
 
 # Database intergration
 cred = credentials.Certificate("credentials.json")
@@ -59,33 +67,41 @@ def device():
         session['device_data'] = device_data
         print("session",session)
 
-        return redirect(url_for('installer'))
+        return redirect(url_for('delivery'))
 
 
     return render_template('device.html')
 
-@app.route('/installer',methods = ['GET','POST'])
-def installer():
-    if request.method == 'POST':
-        installer_name = request.form.get('installer_name')
-        installer_rating = request.form.get('installer_rating')
 
-        installer_data = {
-            'installer_name': installer_name,
-            'installer_rating': installer_rating
-        }
-        session['installer_data'] = installer_data
-
-        db.collection(session['user_data']['email']).document("data").set(session)
-        print(session['user_data']['email'])
-        
-
-        return redirect(url_for('delivery'))
-    return render_template('installer.html')
 
 @app.route('/delivery', methods=['GET','POST'])
 def delivery():
-    return render_template('delivery.html')
+        # if request.method == 'POST':
+            # Send email
+# Extract data from the session cookie
+        user_data = session.get('user_data', {})
+        consumption_data = session.get('consumption_data', {})
+        device_data = session.get('device_data', {})
+
+        # Format the data for email
+        email_body = f"Hello {user_data.get('name', '')},\n\n"
+        email_body += "New order made!\n\n"
+        email_body += "Here are the details:\n"
+        email_body += f"Name: {user_data.get('name', '')}\n"
+        email_body += f"Email: {user_data.get('email', '')}\n"
+        email_body += f"Location: {user_data.get('location', '')}\n\n"
+        email_body += "Consumption Information:\n"
+        email_body += f"Selected Appliances: {', '.join(consumption_data.get('selected_appliances', []))}\n"
+        email_body += f"Total Wattage: {consumption_data.get('total_wattage', '')}\n\n"
+        email_body += "Device Information:\n"
+        email_body += f"Component List: {', '.join(device_data.get('component_list', []))}\n"
+
+        # Send email
+        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com'])
+        msg.body = email_body
+        mail.send(msg)
+        
+        return render_template('delivery.html')
 
 
 

@@ -43,3 +43,27 @@ Sustainability Focus: Join us in building a sustainable future for South Africa,
 
 Join Us in Powering Tomorrow
 Explore the simplicity of renewable energy with Mwanga Energies. Your journey to uninterrupted power starts here. [Get Started] with Mwanga Energies – Empowering Your Sustainable Tomorrow.
+
+Installer code 
+@app.route('/installer',methods = ['GET','POST'])
+def installer():
+    if request.method == 'POST':
+        installer_name = request.form.get('installer_name')
+        installer_rating = request.form.get('installer_rating')
+
+        installer_data = {
+            'installer_name': installer_name,
+            'installer_rating': installer_rating
+        }
+        session['installer_data'] = installer_data
+
+        db.collection(session['user_data']['email']).document("data").set(session)
+        print(session['user_data']['email'])
+        
+
+        return redirect(url_for('delivery'))
+    return render_template('installer.html')
+
+
+
+    bchq cmov kqtm ixcx
