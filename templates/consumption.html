@@ -40,58 +40,68 @@
     <div class="container mt-3">
         <h3 class="mb-4">Device List</h3>
 
+        <label for="backupHours">What can you power?</label>
         <div class="card mt-4 w-100">
-            <div class="card-body">
-                <h5 class="card-title">Kit Box Compact</h5>
-            </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">2 X 300W Solar panel</li>
-                <li class="list-group-item">200A/h 12V Battery</li>
-                <li class="list-group-item">2500 W Sine Inverter</li>
-                <li class="list-group-item">50 A Charge Controller</li>
+                <li class="list-group-item"> 4 x Smartphones</li>
+                <li class="list-group-item">Laptop</li>
+                <li class="list-group-item">Decoder</li>
+                <li class="list-group-item">Laptop</li>
+                <li class="list-group-item">Small Fridge</li>
+                <li class="list-group-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+                        <label class="form-check-label" for="flexCheckDisabled">
+                            Need funding ?
+                        </label>
+                    </div>
+                </li>
             </ul>
-            <div class="form-check" style="text-align: left;">
-                <label class="form-check-label" for="fundingCheckbox">Require Funding?</label>
-                <input type="checkbox" class="form-check-input" id="fundingCheckbox">
-                <p>Powers: Smartphones, tablet, laptop, decoder, laptop, small fri</p>
-            </div>
-            <div class="card-body" style="text-align: right;">
-                <button type="button" class="btn btn-dark">Select</button>
-            </div>
-
         </div>
-        
-        
-
-
-
+            <br>
         <!-- Input Form -->
-    <form action="{{ url_for('consumption') }}" method="post">
-        <!-- Your form fields go here -->
-        <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
-        <input type="hidden" id="totalWattInput" name="totalWatt" value="">
+        <form action="{{ url_for('consumption') }}" method="post">
+            <!-- Your form fields go here -->
+            <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
+            <input type="hidden" id="totalWattInput" name="totalWatt" value="">
+        
+            <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button> -->
+        
+            <!-- Selected Appliances -->
+            <div id="selectedAppliances" class="mt-2"></div>
+            <!-- Total Watt Display -->
+            <div id="totalWattDisplay" class="mt-2"></div>
+        
+            <!-- Dropdown for Backup Hours -->
+            <label for="backupHours">How Long can you power it?</label>
+            <div class="form-group mt-2">
+                <select class="form-control" id="backupHours" name="backupHours">
+                    <option value="2">2 Hours</option>
+                    <option value="6">6 Hours</option>
+                    <option value="8">8 Hours</option>
+                    <option value="8">8 - 12 Hours</option>
+                </select>
+            </div>
+            <br>
+        
+            <!-- Monthly Repayment -->
+            <div>
+                <button type="button" class="btn btn-primary">
+                    Monthly Repayment : R 2 200 pm      
+                  </button>
 
-        <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button> -->
-
-        <!-- Selected Appliances -->
-        <div id="selectedAppliances" class="mt-2"></div>
-        <!-- Total Watt Display -->
-        <div id="totalWattDisplay" class="mt-2"></div>
-
-        <!-- Dropdown for Backup Hours -->
-        <div class="form-group mt-2">
-            <label for="backupHours">How many hours would you want to use it for?</label>
-            <select class="form-control" id="backupHours" name="backupHours">
-                <option value="2">Stage 1</option>
-                <option value="6">6 hours</option>
-                <option value="8">8 hours</option>
-            </select>
-        </div>
-
-        <!-- Next Button -->
-        <button type="submit" class="btn btn-dark mt-2">Next</button>
-    </form>
-
+                  <button type="button" class="btn btn-primary">
+                    Cash Price : R 20 000      
+                  </button>
+            </div>
+            
+            <!-- Next Button -->
+            <button type="submit" class="btn btn-dark mt-2">Next</button>
+            <br>
+            <br>
+        </form>
+        </form>
+        
     </div>
 
     <!-- Bootstrap JS and jQuery -->
