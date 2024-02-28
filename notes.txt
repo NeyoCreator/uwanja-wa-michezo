@@ -67,3 +67,10 @@ def installer():
 
 
     bchq cmov kqtm ixcx
+
+    =========================================================================================
+    venting notes 
+    helpful sites
+    https://www.jeffreysbaytourism.org/understand-eskom-loadshedding-stages#:~:text=There%20are%208%20stages%20of,4%20hours%20at%20a%20time.
+
+

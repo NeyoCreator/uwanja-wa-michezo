@@ -4,22 +4,25 @@ import firebase_admin
 from flask_mail import Mail, Message
 
 
-# App initialisation
+# 1.App initialisation
 app = Flask(__name__)
 app.secret_key = 'secret_data'
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'  # Change this to your SMTP server
-app.config['MAIL_PORT'] = 587  # Change this to your SMTP port
-app.config['MAIL_USE_TLS'] = True  # Change this according to your SMTP configuration
-app.config['MAIL_USERNAME'] = 'neo.andersonseb@gmail.com'  # Change this to your email username
-app.config['MAIL_PASSWORD'] = 'bchq cmov kqtm ixcx'  # Change this to your email password
+
+# 2.Email Setp
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'  
+app.config['MAIL_PORT'] = 587 
+app.config['MAIL_USE_TLS'] = True  
+app.config['MAIL_USERNAME'] = 'neo.andersonseb@gmail.com'
+app.config['MAIL_PASSWORD'] = 'bchq cmov kqtm ixcx'
 mail = Mail(app)
 
 
-# Database intergration
+# 3.Database intergration
 cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+# 4.Routes
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -46,13 +49,14 @@ def consumption():
         total_wattage = request.form.get('totalWatt')
 
         consumption_data = {
-            'selected_appliances': selected_appliances.split(','),
+            # 'selected_appliances': selected_appliances.split(','),
             'total_wattage': total_wattage
         }
         session['consumption_data'] = consumption_data
+        print("SAGA")
         print(session)
 
-        return redirect(url_for('device'))
+        return redirect(url_for('delivery'))
     
     return render_template('consumption.html')
 
@@ -78,7 +82,7 @@ def device():
 def delivery():
         # if request.method == 'POST':
             # Send email
-# Extract data from the session cookie
+        # Extract data from the session cookie
         user_data = session.get('user_data', {})
         consumption_data = session.get('consumption_data', {})
         device_data = session.get('device_data', {})

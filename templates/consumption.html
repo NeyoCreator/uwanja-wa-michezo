@@ -38,74 +38,40 @@
 
     <!-- Form Section -->
     <div class="container mt-3">
-        <h3 class="mb-4">How much power do you generate?</h3>
+        <h3 class="mb-4">Select Package</h3>
 
-        <!-- Input Form -->
-    <form action="{{ url_for('consumption') }}" method="post">
-        <!-- Your form fields go here -->
-        <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
-        <input type="hidden" id="totalWattInput" name="totalWatt" value="">
-
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button>
-
-        <!-- Selected Appliances -->
-        <div id="selectedAppliances" class="mt-2"></div>
-        <!-- Total Watt Display -->
-        <div id="totalWattDisplay" class="mt-2"></div>
-
-        <!-- Dropdown for Backup Hours -->
-        <div class="form-group mt-2">
-            <label for="backupHours">How many hours would you like to back up?</label>
-            <select class="form-control" id="backupHours" name="backupHours">
-                <option value="2">2 hours</option>
-                <option value="6">6 hours</option>
-                <option value="8">8 hours</option>
+        <!-- Dropdown for Package Selection -->
+        <div class="form-group">
+            <label for="packageSelection">Select Package:</label>
+            <select class="form-control" id="packageSelection" onchange="showPackageDetails()">
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
             </select>
         </div>
 
-        <!-- Next Button -->
-        <button type="submit" class="btn btn-dark mt-2">Next</button>
-    </form>
-
-        <!-- Appliance Modal -->
-        <div class="modal fade" id="applianceModal" tabindex="-1" role="dialog" aria-labelledby="applianceModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="applianceModalLabel">Select Appliance</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- List of Appliances -->
-                        <ul class="list-group">
-                            <li class="list-group-item" data-wattage="100">Refrigerator</li>
-                            <li class="list-group-item" data-wattage="1500">Oven</li>
-                            <li class="list-group-item" data-wattage="1000">Microwave</li>
-                            <li class="list-group-item" data-wattage="800">Stove or Cooktop</li>
-                            <li class="list-group-item" data-wattage="1200">Dishwasher</li>
-                            <li class="list-group-item" data-wattage="500">Washing Machine</li>
-                            <li class="list-group-item" data-wattage="800">Dryer</li>
-                            <li class="list-group-item" data-wattage="700">Toaster</li>
-                            <li class="list-group-item" data-wattage="900">Coffee Maker</li>
-                            <li class="list-group-item" data-wattage="400">Blender</li>
-                            <li class="list-group-item" data-wattage="1200">Kettle</li>
-                            <li class="list-group-item" data-wattage="600">Food Processor</li>
-                            <li class="list-group-item" data-wattage="300">Mixer (stand or hand)</li>
-                            <li class="list-group-item" data-wattage="700">Vacuum Cleaner</li>
-                            <li class="list-group-item" data-wattage="1200">Iron</li>
-                            <li class="list-group-item" data-wattage="1500">Hair Dryer</li>
-                            <li class="list-group-item" data-wattage="1500">Air Conditioner</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+        <!-- Package Details Card -->
+        <div class="card mt-4 w-100" id="packageDetails">
+            <div class="card-body">
+                <h5 class="card-title" id="packageTitle">Standard Range</h5>
+                <p class="card-text" id="packageDescription">An inverter and battery solution that includes 5.5kW inverter, a 5kW battery and installation.</p>
+                <p class="card-text" id="packagePrice">Price: R 50,000</p>
+                <p class="card-text" id="packageBenefits">Benefits:
+                    <ul>
+                        <li>Up to 5 hours of backup electricity</li>
+                        <li>Run CCTV, Computer, WiFi, and fridge</li>
+                    </ul>
+                </p>
             </div>
         </div>
+
+        <form action="{{ url_for('consumption') }}" method="post">
+        <button type="submit" class="btn btn-dark mt-2">Next</button>
+
+        </form>
+
+        <!-- Next Button -->
+        <br>
+        <br>
     </div>
 
     <!-- Bootstrap JS and jQuery -->
@@ -115,26 +81,25 @@
 
     <!-- Custom Script -->
     <script>
-        $(document).ready(function () {
-            $(".list-group-item").click(function () {
-                var selectedAppliance = $(this).text();
-                var wattage = parseInt($(this).data("wattage"));
-                $("#selectedAppliances").append('<span class="badge badge-dark mr-2">' + selectedAppliance + '</span>');
-    
-                // Calculate and display total wattage
-                var totalWattage = 0;
-                $("#selectedAppliances .badge").each(function () {
-                    totalWattage += wattage;
-                });
-                $("#totalWattDisplay").text("Total Watt: " + totalWattage + " W");
-    
-                // Update hidden input fields
-                $("#selectedAppliancesInput").val($("#selectedAppliances").text());
-                $("#totalWattInput").val(totalWattage);
-                
-                $("#applianceModal").modal("hide");
-            });
-        });
+        function showPackageDetails() {
+            var selectedPackage = document.getElementById("packageSelection").value;
+            var packageTitle = document.getElementById("packageTitle");
+            var packageDescription = document.getElementById("packageDescription");
+            var packagePrice = document.getElementById("packagePrice");
+            var packageBenefits = document.getElementById("packageBenefits");
+
+            if (selectedPackage === "standard") {
+                packageTitle.textContent = "Standard Range";
+                packageDescription.textContent = "An inverter and battery solution that includes 5.5kW inverter, a 5kW battery and installation.";
+                packagePrice.textContent = "Price: R 50,000";
+                packageBenefits.innerHTML = "Benefits: <ul><li>Up to 5 hours of backup electricity</li><li>Run CCTV, Computer, WiFi, and fridge</li></ul>";
+            } else if (selectedPackage === "premium") {
+                packageTitle.textContent = "Premium Range";
+                packageDescription.textContent = "A solar-power-and-battery solution that includes solar panels with 3kWp generation capacity, a 5.5 kW inverter and 10-year warranty.";
+                packagePrice.textContent = "Price: R 75,000";
+                packageBenefits.innerHTML = "Benefits: <ul><li>Solar panels with 3kWp generation capacity</li><li>5.5 kW inverter and 10-year warranty</li></ul>";
+            }
+        }
     </script>
 
 </body>
