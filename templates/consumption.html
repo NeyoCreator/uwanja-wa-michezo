@@ -38,70 +38,40 @@
 
     <!-- Form Section -->
     <div class="container mt-3">
-        <h3 class="mb-4">Device List</h3>
+        <h3 class="mb-4">Select Package</h3>
 
-        <label for="backupHours">What can you power?</label>
-        <div class="card mt-4 w-100">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> 4 x Smartphones</li>
-                <li class="list-group-item">Laptop</li>
-                <li class="list-group-item">Decoder</li>
-                <li class="list-group-item">Laptop</li>
-                <li class="list-group-item">Small Fridge</li>
-                <li class="list-group-item">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
-                        <label class="form-check-label" for="flexCheckDisabled">
-                            Need funding ?
-                        </label>
-                    </div>
-                </li>
-            </ul>
+        <!-- Dropdown for Package Selection -->
+        <div class="form-group">
+            <label for="packageSelection">Select Package:</label>
+            <select class="form-control" id="packageSelection" onchange="showPackageDetails()">
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+            </select>
         </div>
-            <br>
-        <!-- Input Form -->
-        <form action="{{ url_for('consumption') }}" method="post">
-            <!-- Your form fields go here -->
-            <input type="hidden" id="selectedAppliancesInput" name="selectedAppliances" value="">
-            <input type="hidden" id="totalWattInput" name="totalWatt" value="">
-        
-            <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#applianceModal">Add</button> -->
-        
-            <!-- Selected Appliances -->
-            <div id="selectedAppliances" class="mt-2"></div>
-            <!-- Total Watt Display -->
-            <div id="totalWattDisplay" class="mt-2"></div>
-        
-            <!-- Dropdown for Backup Hours -->
-            <label for="backupHours">How Long can you power it?</label>
-            <div class="form-group mt-2">
-                <select class="form-control" id="backupHours" name="backupHours">
-                    <option value="2">2 Hours</option>
-                    <option value="6">6 Hours</option>
-                    <option value="8">8 Hours</option>
-                    <option value="8">8 - 12 Hours</option>
-                </select>
-            </div>
-            <br>
-        
-            <!-- Monthly Repayment -->
-            <div>
-                <button type="button" class="btn btn-primary">
-                    Monthly Repayment : R 2 200 pm      
-                  </button>
 
-                  <button type="button" class="btn btn-primary">
-                    Cash Price : R 20 000      
-                  </button>
+        <!-- Package Details Card -->
+        <div class="card mt-4 w-100" id="packageDetails">
+            <div class="card-body">
+                <h5 class="card-title" id="packageTitle">Standard Range</h5>
+                <p class="card-text" id="packageDescription">An inverter and battery solution that includes 5.5kW inverter, a 5kW battery and installation.</p>
+                <p class="card-text" id="packagePrice">Price: R 50,000</p>
+                <p class="card-text" id="packageBenefits">Benefits:
+                    <ul>
+                        <li>Up to 5 hours of backup electricity</li>
+                        <li>Run CCTV, Computer, WiFi, and fridge</li>
+                    </ul>
+                </p>
             </div>
-            
-            <!-- Next Button -->
-            <button type="submit" class="btn btn-dark mt-2">Next</button>
-            <br>
-            <br>
+        </div>
+
+        <form action="{{ url_for('consumption') }}" method="post">
+        <button type="submit" class="btn btn-dark mt-2">Next</button>
+
         </form>
-        </form>
-        
+
+        <!-- Next Button -->
+        <br>
+        <br>
     </div>
 
     <!-- Bootstrap JS and jQuery -->
@@ -111,6 +81,25 @@
 
     <!-- Custom Script -->
     <script>
+        function showPackageDetails() {
+            var selectedPackage = document.getElementById("packageSelection").value;
+            var packageTitle = document.getElementById("packageTitle");
+            var packageDescription = document.getElementById("packageDescription");
+            var packagePrice = document.getElementById("packagePrice");
+            var packageBenefits = document.getElementById("packageBenefits");
+
+            if (selectedPackage === "standard") {
+                packageTitle.textContent = "Standard Range";
+                packageDescription.textContent = "An inverter and battery solution that includes 5.5kW inverter, a 5kW battery and installation.";
+                packagePrice.textContent = "Price: R 50,000";
+                packageBenefits.innerHTML = "Benefits: <ul><li>Up to 5 hours of backup electricity</li><li>Run CCTV, Computer, WiFi, and fridge</li></ul>";
+            } else if (selectedPackage === "premium") {
+                packageTitle.textContent = "Premium Range";
+                packageDescription.textContent = "A solar-power-and-battery solution that includes solar panels with 3kWp generation capacity, a 5.5 kW inverter and 10-year warranty.";
+                packagePrice.textContent = "Price: R 75,000";
+                packageBenefits.innerHTML = "Benefits: <ul><li>Solar panels with 3kWp generation capacity</li><li>5.5 kW inverter and 10-year warranty</li></ul>";
+            }
+        }
     </script>
 
 </body>
