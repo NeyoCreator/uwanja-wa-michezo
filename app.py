@@ -46,13 +46,15 @@ def consumption():
         total_wattage = request.form.get('totalWatt')
 
         consumption_data = {
-            'selected_appliances': selected_appliances.split(','),
+            # 'selected_appliances': selected_appliances.split(','),
+            'selected_appliances': "",
+
             'total_wattage': total_wattage
         }
         session['consumption_data'] = consumption_data
         print(session)
 
-        return redirect(url_for('device'))
+        return redirect(url_for('delivery'))
     
     return render_template('consumption.html')
 
