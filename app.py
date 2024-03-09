@@ -63,15 +63,16 @@ def logout():
 @app.route('/index', methods = ['GET','POST'])
 def index():
     if ('user' in session):
-        # return 'Hi, {}'.format(session['user'])
         return render_template("delivery.html")
     if request.method == 'POST':
         name =  request.form.get('name')
         email = request.form.get('email')
+        password = request.form.get('password')
         location = request.form.get('location')
-
+        session['user'] = email
+        user = auth.create_user_with_email_and_password(email, password)
+        print("#Successfully Registred user",user)
         session['user_data'] = {'name': name, 'email': email, 'location': location}
-        print(session)
         return redirect(url_for('consumption'))
 
 
@@ -80,17 +81,15 @@ def index():
 @app.route('/consumption', methods = ['GET','POST'])
 def consumption():
     if request.method == 'POST':
-        selected_appliances = request.form.get('selectedAppliances')
-        total_wattage = request.form.get('totalWatt')
+        # package = request.form.get('email')
+        selected_package = request.form.get('packageSelection')
+        print("The selected package is ",selected_package)
+        session['selected_package'] = selected_package
+        user_information = [session['user_data'],session['selected_package']]
 
-        consumption_data = {
-            # 'selected_appliances': selected_appliances.split(','),
-            'selected_appliances': "",
-
-            'total_wattage': total_wattage
-        }
-        session['consumption_data'] = consumption_data
-        print(session)
+        # session['consumption_data'] = consumption_data
+        db.collection(session['user_data']['email']).document("data").set(session)
+        print("INFO : Database updated ")
 
         return redirect(url_for('delivery'))
     
@@ -116,12 +115,10 @@ def device():
 
 @app.route('/delivery', methods=['GET','POST'])
 def delivery():
-        # if request.method == 'POST':
-            # Send email
-# Extract data from the session cookie
+    # Extract data from the session cookie
         user_data = session.get('user_data', {})
-        consumption_data = session.get('consumption_data', {})
-        device_data = session.get('device_data', {})
+        # consumption_data = session.get('consumption_data', {})
+        # device_data = session.get('device_data', {})
 
         # Format the data for email
         email_body = f"Hello {user_data.get('name', '')},\n\n"
@@ -130,14 +127,15 @@ def delivery():
         email_body += f"Name: {user_data.get('name', '')}\n"
         email_body += f"Email: {user_data.get('email', '')}\n"
         email_body += f"Location: {user_data.get('location', '')}\n\n"
-        email_body += "Consumption Information:\n"
-        email_body += f"Selected Appliances: {', '.join(consumption_data.get('selected_appliances', []))}\n"
-        email_body += f"Total Wattage: {consumption_data.get('total_wattage', '')}\n\n"
-        email_body += "Device Information:\n"
-        email_body += f"Component List: {', '.join(device_data.get('component_list', []))}\n"
+        email_body += f"Selected package: {session['selected_package']}\n\n"
+        email_body += f"Your delivery is being processed , our agents will get back to you regarding additional information. Thank you for chossing Mwanga.\n\n"
+
+
+
+        
 
         # Send email
-        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com'])
+        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session['user_data']['email']])
         msg.body = email_body
         mail.send(msg)
         

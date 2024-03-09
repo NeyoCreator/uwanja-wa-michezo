@@ -81,9 +81,11 @@
         <br>
 
         <!-- Dropdown for Package Selection -->
+        <form action="{{ url_for('consumption') }}" method="post">
+
         <div class="form-group">
             <label for="packageSelection">Select Package:</label>
-            <select class="form-control" id="packageSelection" onchange="showPackageDetails()">
+            <select class="form-control" id="packageSelection" name="packageSelection" onchange="showPackageDetails()">
                 <option value="standard">Standard</option>
                 <option value="premium">Premium</option>
             </select>
@@ -105,9 +107,8 @@
         </div>
 
         <!-- Next Button -->
-        <form action="{{ url_for('consumption') }}" method="post">
         <button type="submit" class="btn btn-dark mt-2">Next</button>
-        </form>
+        </form> 
         <br>
         <br>
     </div>
