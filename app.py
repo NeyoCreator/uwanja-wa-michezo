@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
 import firebase_admin
 from flask_mail import Mail, Message
+import pyrebase
 
 
 # App initialisation
@@ -20,9 +21,42 @@ cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+# Authentication
+config = {
+    "apiKey": "AIzaSyBz7_W4p3rmppxhCXNHZzj3yC7MQzPeMSY",
+    "authDomain": "mwanga-445c6.firebaseapp.com",
+    "databaseURL": "https://mwanga-445c6-default-rtdb.firebaseio.com",
+    "projectId": "mwanga-445c6",
+    "storageBucket": "mwanga-445c6.appspot.com",
+    "messagingSenderId": "252500288391",
+    "appId": "1:252500288391:web:18b843348ecafc9bf5a922"
+  }
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    # if ('user' in session):
+    #     # return 'Hi, {}'.format(session['user'])
+    #     return render_template("dashboard.html")
+
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get("password")
+        try:
+            # Assuming auth is already defined somewhere in your code
+            user = auth.sign_in_with_email_and_password(email, password)
+            print("Successfully signed in.")
+            session['user'] = email
+            return render_template("delivery.html")
+        except:
+            return "Failed to login"
+
+    return render_template("login.html")
 
 @app.route('/index', methods = ['GET','POST'])
 def index():
