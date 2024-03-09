@@ -40,11 +40,8 @@ def home():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    # if ('user' in session):
-    #     # return 'Hi, {}'.format(session['user'])
-    #     return render_template("dashboard.html")
-
     if request.method == 'POST':
+        print("loading")
         email = request.form.get('email')
         password = request.form.get("password")
         try:
@@ -58,9 +55,16 @@ def login():
 
     return render_template("login.html")
 
+@app.route("/logout")
+def logout():
+    session.pop('user')
+    return redirect('/')
+
 @app.route('/index', methods = ['GET','POST'])
 def index():
-    print("Hello")
+    if ('user' in session):
+        # return 'Hi, {}'.format(session['user'])
+        return render_template("delivery.html")
     if request.method == 'POST':
         name =  request.form.get('name')
         email = request.form.get('email')
