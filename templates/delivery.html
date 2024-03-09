@@ -23,14 +23,8 @@
           background-color: #F6F6F6;
           font-family: 'Ubuntu', sans-serif;
         }
-        .navbar {
-          background-color: #F6F6F6;
-          color: #030606 !important;
-          border-bottom: 1px solid #F6F6F6; /* Thin line below the navbar */
-        }
-        .navbar-brand {
-          font-size: 24px; /* Adjust the font size as needed */
-        }
+  
+       
         .jumbotron {
           background-color: #F6F6F6;
           font-weight: bold;
@@ -60,21 +54,21 @@
 <body>
 
     <!-- Navigation Bar -->
-    <br>
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <h1 style="color: #030606; font-weight: 500;">Mwanga.</h2>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!-- <a class="navbar-brand" href="/">Mwanga</a> -->
+      <h2 style="color: #F6F6F6; font-weight: 500;">Mwanga.</h2>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- Add the logout button here -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link btn btn-dark" href="/logout">Logout</a>
+            <a class="nav-link" href="/logout">Log-out</a>
           </li>
         </ul>
       </div>
     </nav>
+    <br>
 
     <div class="container">
         <!-- <h1>Delivery Process</h1> -->
