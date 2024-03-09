@@ -52,3 +52,4 @@ az webapp log tail --name mwanga --resource-group appsvc_linux_centralus
                 <a class="btn btn-warning btn-lg" href="/index" role="button">Join Us</a><br><br>
 
 
+{'consumption_data': {'selected_appliances': '', 'total_wattage': None}, 'user_data': {'email': 'Kutlwano@gmail.com', 'location': 'Cape Town', 'name': 'Kutlwano'}}
