@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mwanga - Your Partner for Uninterrupted Energy</title>
@@ -9,6 +10,10 @@
   <!-- Google Fonts - Ubuntu -->
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
   <style>
+        html, body {
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+          }
     body {
       background-color: #F6F6F6;
       font-family: 'Ubuntu', sans-serif;
@@ -75,5 +80,13 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const resizeOps = () => {
+      document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+    };
+
+    resizeOps();
+    window.addEventListener("resize", resizeOps);
+  </script>
 </body>
 </html>
