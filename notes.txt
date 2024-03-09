@@ -48,3 +48,7 @@ Installer code
 ==============================================================================================
 Log viewer
 az webapp log tail --name mwanga --resource-group appsvc_linux_centralus
+
+                <a class="btn btn-warning btn-lg" href="/index" role="button">Join Us</a><br><br>
+
+

@@ -1,190 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <!-- Load Ubuntu font from Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap">
-    <style>
- 
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Ubuntu', sans-serif;
-    overflow-x: hidden; /* This prevents horizontal scrolling */
-
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1140px;
-            height: 960px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .background {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background: black;
-        }
-
-        .welcome-text {
-            width: 627px;
-            height: 184px;
-            left: 120px;
-            top: 182px;
-            position: absolute;
-            color: #F1546E;
-            font-size: 40px;
-            font-weight: 500;
-            word-wrap: break-word;
-        }
-
-        .navbar {
-            width: 900px;
-            height: 46px;
-            left: 120px;
-            top: 54px;
-            position: absolute;
-            display: flex;
-            align-items: center;
-        }
-
-        .brand {
-            color: #F1546E;
-            font-size: 40px;
-            font-weight: 700;
-            margin-right: auto;
-        }
-
-        .nav-item {
-            color: #F1546E;
-            font-size: 20px;
-            font-weight: 300;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-
-        .tagline {
-            width: 723px;
-            height: 17px;
-            left: 120px;
-            top: 396px;
-            position: absolute;
-            color: #F1546E;
-            font-size: 15px;
-            font-weight: 300;
-            word-wrap: break-word;
-        }
-
-        .feature {
-            width: 309px;
-            height: 124px;
-            left: 119px;
-            top: 644px;
-            position: absolute;
-        }
-
-        .feature-text {
-            width: 309px;
-            left: 0px;
-            top: 0px;
-            position: absolute;
-            color: #F1546E;
-            font-size: 15px;
-            font-weight: 300;
-            word-wrap: break-word;
-        }
-
-        .circle {
-            width: 53px;
-            height: 53px;
-            left: -10px;
-            top: -11px;
-            position: absolute;
-            background: linear-gradient(180deg, rgba(241, 84, 110, 0.20) 0%, rgba(249, 187, 57, 0.20) 100%);
-            border-radius: 9999px;
-        }
-
-        .inner-circle {
-            width: 32px;
-            height: 30.67px;
-            left: 10px;
-            top: 11px;
-            position: absolute;
-            background: linear-gradient(180deg, #F1546E 0%, #F9BB39 100%);
-        }
-
-        .join-us {
-            width: 200px;
-            height: 50px;
-            left: 120px;
-            top: 459px;
-            position: absolute;
-            background: linear-gradient(180deg, #F1546E 0%, #F9BB39 100%);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-        }
-
-        .join-us-text {
-            margin-left: 63px;
-            color: black;
-            font-size: 20px;
-            font-weight: 700;
-            word-wrap: break-word;
-        }
-
-        .feature {
-        display: flex;
-        justify-content: space-between;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mwanga - Your Partner for Uninterrupted Energy</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Google Fonts - Ubuntu -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #F6F6F6;
+      font-family: 'Ubuntu', sans-serif;
     }
-
-        
-    </style>
+    .navbar {
+      background-color: #F6F6F6;
+      color: #030606 !important;
+      border-bottom: 1px solid #F6F6F6; /* Thin line below the navbar */
+    }
+    .navbar-brand {
+      font-size: 24px; /* Adjust the font size as needed */
+    }
+    .jumbotron {
+      background-color: #F6F6F6;
+      font-weight: bold;
+    }
+    .cta-btn {
+      border-radius: 40px; /* Rounded border radius */
+      background: linear-gradient(to right, #f1546e, #f7a147); /* Gradient background */
+      color: #030606;
+      padding: 15px;
+      width: 150px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-weight: bold; /* Make the font bold */
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="background"></div>
-    <div class="welcome-text">Welcome to Mwanga, your<br/>partner for uninterrupted energy.<br/>Our goal is to make renewable<br/>energy accessible.</div>
-    <div class="navbar">
-        <div class="brand">Mwanga</div>
-        <div class="nav-item">About us</div>
-        <div class="nav-item">Product</div>
-        <div class="nav-item">Contact us</div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="#" style="color: #030606;">Mwanga.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: #030606;">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: #030606;">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: #030606;">Products</a>
+        </li>
+      </ul>
     </div>
-    <div class="tagline">Join us in creating a sustainable future.</div>
+  </nav>
 
-
-    <!-- <div class="feature">
-        <div style="width: 337px; height: 68px; position: relative">
-            <div style="width: 284px; left: 53px; top: 0px; position: absolute; color: #F1546E; font-size: 15px; font-family: Ubuntu; font-weight: 300; word-wrap: break-word">Easy Product Access: Discover and order the right solar products hassle-free. We simplify the supply chain, so you always know what you're getting.</div>
-            <div style="width: 40px; height: 40px; left: 0px; top: 11px; position: absolute">
-                <div style="width: 40px; height: 40px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, rgba(241, 84, 110, 0.20) 0%, rgba(249, 187, 57, 0.20) 100%); border-radius: 9999px"></div>
-                <div style="width: 8px; height: 16px; left: 16px; top: 12px; position: absolute; color: #F1546E; font-size: 15px; font-family: Ubuntu; font-weight: 700; word-wrap: break-word">1</div>
-            </div>
-        </div>
-    
-        <div style="width: 337px; height: 68px; position: relative">
-            <div style="width: 284px; left: 53px; top: 0px; position: absolute; color: #F1546E; font-size: 15px; font-family: Ubuntu; font-weight: 300; word-wrap: break-word">Easy Product Access: Discover and order the right solar products hassle-free. We simplify the supply chain, so you always know what you're getting.</div>
-            <div style="width: 40px; height: 40px; left: 0px; top: 11px; position: absolute">
-                <div style="width: 40px; height: 40px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, rgba(241, 84, 110, 0.20) 0%, rgba(249, 187, 57, 0.20) 100%); border-radius: 9999px"></div>
-                <div style="width: 8px; height: 16px; left: 16px; top: 12px; position: absolute; color: #F1546E; font-size: 15px; font-family: Ubuntu; font-weight: 700; word-wrap: break-word">1</div>
-            </div>
-        </div>
-    </div> -->
-    
-    <div class="join-us">
-        <!-- <div class="join-us-text">Join Us.</div> -->
-        <a class="join-us-text" href="/index" role="button">Join Us</a><br><br>
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <div class="container text-left">
+      <h1 class="display-4">Welcome to Mwanga</h1>
+      <p class="lead">Our mission is to increase the adoption of renewable energy, by creating a platform for sustainable and abundant energy for future generations.</p>
+      <div style="max-width: 40%; margin-bottom: 20px;">
+        <img src="static/illustration.png" alt="Your Image Description" style="width: 100%; height:  100%;">
+      </div>
+      <a class="btn btn-lg cta-btn" href="#">Join Us</a>
     </div>
-</div>
+  </div>
 
+  <!-- Bootstrap JS and Popper.js CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
