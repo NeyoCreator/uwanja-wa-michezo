@@ -82,7 +82,7 @@ def index():
 def consumption():
     if request.method == 'POST':
         # package = request.form.get('email')
-        selected_package = request.form.get('packageSelection')
+        selected_package = request.form.get('exampleRadios')
         print("The selected package is ",selected_package)
         session['selected_package'] = selected_package
         user_information = [session['user_data'],session['selected_package']]
