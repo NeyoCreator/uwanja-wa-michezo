@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <!-- <title>Mwanga Energies</title> -->
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts - Ubuntu -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        html, body {
+          height: 100vh;
+          height: calc(var(--vh, 1vh) * 100);
+        }
+        body {
+          background-color: #F6F6F6;
+          font-family: 'Ubuntu', sans-serif;
+        }
+        .navbar {
+          background-color: #F6F6F6;
+          color: #030606 !important;
+          border-bottom: 1px solid #F6F6F6; /* Thin line below the navbar */
+        }
+        .navbar-brand {
+          font-size: 24px; /* Adjust the font size as needed */
+        }
+        .jumbotron {
+          background-color: #F6F6F6;
+          font-weight: bold;
+        }
+        .cta-btn {
+          border-radius: 40px; /* Rounded border radius */
+          background: linear-gradient(to right, #f1546e, #f7a147); /* Gradient background */
+          color: #030606;
+          padding: 15px;
+          width: 150px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          font-weight: bold; /* Make the font bold */
+        }
+
+        .btn-dark {
+            border: none; /* Remove the border */
+            border-radius: 40px; /* Rounded border radius */
+            background: linear-gradient(to right, #f1546e, #f7a147); /* Gradient background */
+            color: #030606;
+            padding: 15px;
+            width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: bold; /* Make the font bold */
+        }
+
+      </style>
+</head>
+<body>
+  <!-- Navbar -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <a class="navbar-brand" href="/">Mwanga</a> -->
+    <h2 style="color: #F6F6F6; font-weight: 500;">Mwanga.</h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <br>
+    <div class="container mt-3">
+        <h3 style="font-weight: 500;">Register details</h3>
+
+        <!-- <br> -->
+
+        <!-- <div style="width: 126px; height: 30px; justify-content: center; align-items: flex-start; gap: 18px; display: inline-flex">
+            <div style="width: 25px; height: 25px; background: linear-gradient(155deg, #F9BB39 0%, #F25B6B 100%); border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold;">1</div>
+            <div style="width: 25px; height: 25px; background: #F7E4BD; border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: #030606;">2</div>
+            <div style="width: 25px; height: 25px; background: #F7E4BD; border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: #030606;">3</div>
+        </div> -->
+        
+        <!-- <br>
+        <br> -->
+
+
+        <!-- Input Form -->
+        <form method="post" action="/register_user" >
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+            <!-- <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div> -->
+            <br>
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+            <button type="submit" class="btn btn-dark ">Submit</button>
+            <br>
+            <br>
+
+            <!-- New paragraph added -->
+          <p >Already have an account? Click <a style="color: #f7a147;" href="/login">here</a> to login.</p>
+            <br>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      const resizeOps = () => {
+        document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+      };
+
+      resizeOps();
+      window.addEventListener("resize", resizeOps);
+    </script>
+
+</body>
+</html>
+    

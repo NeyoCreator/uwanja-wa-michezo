@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
+from firebase_admin import auth as auth_user
 import firebase_admin
 from flask_mail import Mail, Message
 import pyrebase
@@ -74,9 +75,17 @@ def index():
         print("#Successfully Registred user",user)
         session['user_data'] = {'name': name, 'email': email, 'location': location}
         return redirect(url_for('consumption'))
-
-
     return render_template('index.html')
+
+@app.route('/register', methods = ['GET','POST'])
+def register():
+    print("Info: Redirecting to register page")
+    return render_template('register.html')
+
+@app.route('/register_user', methods = ['GET','POST'])
+def register_user():
+    print("Info: Registering user")
+    return render_template('pass.html')
 
 @app.route('/consumption', methods = ['GET','POST'])
 def consumption():
@@ -130,13 +139,11 @@ def delivery():
         email_body += f"Selected package: {session['selected_package']}\n\n"
         email_body += f"Your delivery is being processed , our agents will get back to you regarding additional information. Thank you for chossing Mwanga.\n\n"
 
-
-
+        link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
         
-
         # Send email
         msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session['user_data']['email']])
-        msg.body = email_body
+        msg.body = link
         mail.send(msg)
         
         return render_template('delivery.html')
