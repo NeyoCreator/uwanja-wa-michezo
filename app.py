@@ -5,6 +5,8 @@ import firebase_admin
 from flask_mail import Mail, Message
 import pyrebase
 
+from firebase_admin import auth as auth_user
+
 
 # App initialisation
 app = Flask(__name__)
@@ -85,6 +87,19 @@ def register():
 @app.route('/register_user', methods = ['GET','POST'])
 def register_user():
     print("Info: Registering user")
+    # Get values
+    email_value = request.form.get('email')
+    password_value = request.form.get("password")
+    print("Information :",email_value)
+
+    user = auth_user.create_user(email= email_value, password=password_value)
+    link = auth_user.generate_email_verification_link(email_value, action_code_settings=None)
+    msg = Message('Email Verification.', sender='noreply@app.com', recipients=[email_value])
+    msg.body ="Welcome to Mwanga Energy, your email has been verified! Please click on the link to login.\n" +link
+    mail.send(msg)
+    print("Link hase been sent:")
+
+    # return render_template('register.html')
     return render_template('pass.html')
 
 @app.route('/consumption', methods = ['GET','POST'])
