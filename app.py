@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
+from firebase_admin import auth as auth_user
 import firebase_admin
 from flask_mail import Mail, Message
 import pyrebase
+
+from firebase_admin import auth as auth_user
 
 
 # App initialisation
@@ -74,9 +77,30 @@ def index():
         print("#Successfully Registred user",user)
         session['user_data'] = {'name': name, 'email': email, 'location': location}
         return redirect(url_for('consumption'))
-
-
     return render_template('index.html')
+
+@app.route('/register', methods = ['GET','POST'])
+def register():
+    print("Info: Redirecting to register page")
+    return render_template('register.html')
+
+@app.route('/register_user', methods = ['GET','POST'])
+def register_user():
+    print("Info: Registering user")
+    # Get values
+    email_value = request.form.get('email')
+    password_value = request.form.get("password")
+    print("Information :",email_value)
+
+    user = auth_user.create_user(email= email_value, password=password_value)
+    link = auth_user.generate_email_verification_link(email_value, action_code_settings=None)
+    msg = Message('Email Verification.', sender='noreply@app.com', recipients=[email_value])
+    msg.body ="Welcome to Mwanga Energy, your email has been verified! Please click on the link to login.\n" +link
+    mail.send(msg)
+    print("Link hase been sent:")
+
+    # return render_template('register.html')
+    return render_template('pass.html')
 
 @app.route('/consumption', methods = ['GET','POST'])
 def consumption():
@@ -130,13 +154,11 @@ def delivery():
         email_body += f"Selected package: {session['selected_package']}\n\n"
         email_body += f"Your delivery is being processed , our agents will get back to you regarding additional information. Thank you for chossing Mwanga.\n\n"
 
-
-
+        link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
         
-
         # Send email
         msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session['user_data']['email']])
-        msg.body = email_body
+        msg.body = link
         mail.send(msg)
         
         return render_template('delivery.html')
