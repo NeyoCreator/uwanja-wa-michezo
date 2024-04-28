@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-
     <!-- <title>Mwanga Energies</title> -->
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -57,42 +56,24 @@
 </head>
 <body>
   <!-- Navbar -->
-  <br>
-  <nav class="navbar navbar-expand-lg navbar-dark ">
-    <!-- <a class="navbar-brand" href="#" style="color: #030606; font-weight: 600;">Mwanga.</a> -->
-    <h1 style="color: #030606; font-weight: 500;">Mwanga.</h2>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <a class="navbar-brand" href="/">Mwanga</a> -->
+    <h2 style="color: #F6F6F6; font-weight: 500;">Mwanga.</h2>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log-out</a>
+        </li>
+      </ul>
     </div>
   </nav>
-    
-
+    <br>
     <div class="container mt-3">
-        <h3 style="font-weight: 500;">Login</h3>
-        <!-- Input Form -->
-        <form method="post"  >
-            <div class="form-group">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="location">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <br>
-            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-            <button type="submit" class="btn btn-dark ">Sign-In</button>
-            <br>
-            <br>
-
-            <!-- New paragraph added -->
-          <p >Don't have an account ? Click here to <a style="color: #f7a147;" href="/register">register.</a></p>
-
-        </form>
+        <h3 style="font-weight: 500;">Your account has been created, please check your email to verify the account</h3>
     </div>
 
     <!-- Bootstrap JS and jQuery -->

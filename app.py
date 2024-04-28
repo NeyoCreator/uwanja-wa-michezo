@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, flash, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
 from firebase_admin import auth as auth_user
 import firebase_admin
@@ -40,7 +40,7 @@ auth = firebase.auth()
 @app.route('/')
 def home():
     print("Home page")
-    return render_template('index.html')
+    return render_template('register.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -48,14 +48,14 @@ def login():
         print("loading")
         email = request.form.get('email')
         password = request.form.get("password")
-        try:
+        # try:
             # Assuming auth is already defined somewhere in your code
-            user = auth.sign_in_with_email_and_password(email, password)
-            print("Successfully signed in.")
-            session['user'] = email
-            return render_template("delivery.html")
-        except:
-            return "Failed to login"
+        auth.sign_in_with_email_and_password(email, password)
+        print("Successfully signed in.")
+        session['user'] = email
+        return render_template("index.html")
+        # except:
+        #     return "Failed to login"
 
     return render_template("login.html")
 
@@ -136,31 +136,56 @@ def device():
 
     return render_template('device.html')
 
+@app.route('/save_data', methods=['GET','POST'])
+def save_data():
+    print(session)
+    email_body = f"Your order is being processed , our agents will get back to you regarding additional information. Thank you for chosing Mwanga.\n\n"
 
+    # link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
+    
+    # # Send email
+    msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session["user"]])
+    msg.body = email_body
+    mail.send(msg)
+    print("INFO:Email has been sent successfully")
+    db.collection(session['user']).document("data").set(session)
+    print("INFO:Database has been updated")
+
+
+    return render_template('passData.html')
 
 @app.route('/delivery', methods=['GET','POST'])
 def delivery():
     # Extract data from the session cookie
-        user_data = session.get('user_data', {})
+        # session["user_data"]
         # consumption_data = session.get('consumption_data', {})
         # device_data = session.get('device_data', {})
+        print("called delivery",session['user'])
+        # email_name = session['user']
 
         # Format the data for email
-        email_body = f"Hello {user_data.get('name', '')},\n\n"
-        email_body += "New order made!\n\n"
-        email_body += "Here are the details:\n"
-        email_body += f"Name: {user_data.get('name', '')}\n"
-        email_body += f"Email: {user_data.get('email', '')}\n"
-        email_body += f"Location: {user_data.get('location', '')}\n\n"
-        email_body += f"Selected package: {session['selected_package']}\n\n"
-        email_body += f"Your delivery is being processed , our agents will get back to you regarding additional information. Thank you for chossing Mwanga.\n\n"
+        # email_body = f"Hello {email_name},\n\n"
+        # user_data.get('name', '')
 
-        link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
+        # email_body += "New order made!\n\n"
+        # email_body += "Here are the details:\n"
+        # email_body += f"Name: {user_data.get('name', '')}\n"
+        # email_body += f"Email: {user_data.get('email', '')}\n"
+        # email_body += f"Location: {user_data.get('location', '')}\n\n"
+        # # email_body += f"Selected package: {session['selected_package']}\n\n"
+        email_body = f"Your order is being processed , our agents will get back to you regarding additional information. Thank you for chosing Mwanga.\n\n"
+
+        # link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
         
-        # Send email
-        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session['user_data']['email']])
-        msg.body = link
+        # # Send email
+        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session["user"]])
+        msg.body = email_body
         mail.send(msg)
+
+        # session['consumption_data'] = consumption_data
+        db.collection(session['user']).document("data").set(session)
+        print("INFO : Database updated ")
+        
         
         return render_template('delivery.html')
 
@@ -169,6 +194,36 @@ def delivery():
 def about():
     return render_template('about.html')
 
+@app.route('/order1', methods=['POST'])
+def process_selection1():
+    session['package']="oder1"
+    print(session['package'])
+    return render_template('delivery.html')
+
+
+@app.route('/order2', methods=['POST'])
+def process_selection2():
+    session['package']="order2"
+    print(session)
+    print(session['package'])
+    return render_template('delivery.html')
+
+
+@app.route('/order3', methods=['POST'])
+def process_selection3():
+    session['package']="order3"
+    print(session['package'])
+    return render_template('delivery.html')
+
+# @app.route('/confirmation/<package_id>')
+# def confirmation(package_id):
+#     # This page would show a confirmation message or further information
+#     return f'Confirmation page for package {package_id}'
+
+# @app.route('/confirmation/<package_id>')
+# def confirmation(package_id):
+#     # This page would show a confirmation message or further information
+#     return f'Confirmation page for package {package_id}'
 
 
 if __name__ == '__main__':

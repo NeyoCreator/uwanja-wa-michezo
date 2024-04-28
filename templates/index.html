@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Google Fonts - Ubuntu -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <style>
       html, body {
@@ -27,10 +25,11 @@
           gap: 20px; /* Spacing between cards */
       }
       .card {
-          flex: 0 0 auto; /* Don't grow, don't shrink, base width on content */
-          width: 90%; 
-          max-width: 18rem;
-      }
+    flex: 0 0 90%; /* Don't grow, shrink based on the width, starting at 90% of its container */
+    width: 90%;
+    min-width: 300px; /* Adjust this value based on your design needs */
+    max-width: 18rem;
+}
       .card img {
           width: 100%;
       }
@@ -46,168 +45,107 @@
   </style>
 </head>
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <!-- <a class="navbar-brand" href="/">Mwanga</a> -->
       <h2 style="color: #F6F6F6; font-weight: 500;">Mwanga.</h2>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Log-out</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Log-out</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Cart</a></li>
         </ul>
       </div>
     </nav>
-    <br>
 
-    
-    <!-- Form Section -->
     <div class="container mt-3">
         <h3 class="mb-4">Your home of Renewable energy.</h3>
         <div class="card-container">
+          <!-- Package 1 -->
+          <form action="/order1" method="post">
+              <div class="card">
+                <img class="card-img-top" src="static/imageC.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><b>Rizzen</b></h5>
+                  <p class="card-text">200W power station</p>
+                  <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>60W laptop <b>3.3 hours</b></button>
+                  <br>
+                  <br>
+                  <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>Comes with a <b>Solar Panel</b></button>
+                  <br>
+                  <br>
+                    <!-- <button class="btn price-btn" style="border: 2px solid #000; color: #000; background-color: transparent; border-radius: 10px;" disabled><b>R 4500</b></button> -->
+                  <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled><b>R 4500</b></button>
+                  <br>
+                  <br>
+                  <div style="display: flex; align-items: center;">
+                    <!-- <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 30px;" disabled><b>R 4500</b></button> -->
+                    <!-- <button class="btn price-btn" style="background-color: #F7E4BD; color: #000; border-radius: 30px;" disabled><b>R 4500</b></button> -->
+                    <!-- <button class="btn price-btn" style="border: 2px solid #000; color: #000; background-color: transparent; border-radius: 10px;" disabled><b>R 4500</b></button> -->
+    
+                    <!-- <span style="margin-right: 5px;"></span> -->
+                    <button type="submit" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 10px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Order package</button>
+                    
+                  </div>
+                </div>
 
-        <!-- <div style="display: flex; justify-content: space-between; padding: 0 4px;"> -->
-          <div class="card" style="width: 90%; max-width: 18rem;">
-            <img class="card-img-top" src="static/imageC.png" alt="Card image cap" style="width: 100%;">
-            <div class="card-body" style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);">
-              <h5 class="card-title" style="color: #030606; font-family: Ubuntu; font-weight: 700; font-size: 16px;">Rizzen</h5>
-              <p class="card-text" style="color: #696969; font-family: Ubuntu; font-weight: 400; font-size: 14px;">200W power station</p>
-              <br>
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>60W Laptop W<b> 3.3 hours</b></button>
-              <br>
-              <br>
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>Comes with <b>solar panel</b></button>
-              <br>
-              <br>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                  Select package
-                </label>
               </div>
-              <br>
-              <!-- <a href="#" class="btn btn-primary" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">R 10500</a>
-             -->
-             <div style="display: flex; align-items: center;">
-              <button class="btn price-btn"  style="border: 2px solid #000; color: #000; background-color: transparent; border-radius: 30px;"  disabled><b>R2500</b></button>
-              <span style="margin-right: 10px;"></span>
-              <a href="/register" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Purchase</a>
-          </div>
-            </div>
-          </div>
-          <div class="card" style="width: 90%; max-width: 18rem;">
-            <img class="card-img-top" src="static/imageA.png" alt="Card image cap" style="width: 100%;">
-            <div class="card-body" style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);">
-              <h5 class="card-title" style="color: #030606; font-family: Ubuntu; font-weight: 700; font-size: 16px;">Eco-Flow River</h5>
-              <p class="card-text" style="color: #696969; font-family: Ubuntu; font-weight: 400; font-size: 14px;">300W power station</p>
-              
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>60W laptop <b>5 hours</b></button>
-              <br>
-              <br>
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>200 W console <b>1.5 hours</b></button>
-              <br>
-              <br>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                  Select package
-                </label>
+          </form>
+          <!-- Package 2 -->
+<!-- Package 2 -->
+<!-- Package 2 -->
+<form action="/order2" method="post">
+  <div class="card">
+    <img class="card-img-top" src="static/imageA.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Eco-Flow River</b></h5>
+      <p class="card-text">300W power station</p>
+      <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>60W laptop <b>5 hours</b></button>
+      <br><br>
+      <!-- <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>200W console <b>1.5 hours</b></button>
+      <br><br> -->
+      <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>Comes with a <b>Solar panel</b></button>
+      <br><br>
+      <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled><b>R 5500</b></button>
+      <br><br>
+      <button type="submit" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 10px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Order package</button>
+    
+    </div>
+  </div>
+</form>
+
+          <!-- Package 3 -->
+          <form action="/order3" method="post">
+              <div class="card">
+                <img class="card-img-top" src="static/imageB.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><b>Bluetti</b></h5>
+                  <p class="card-text">600W power station</p>
+                  <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>60W laptop <b>10 hours</b></button>
+                  <br><br>
+                  <!-- <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>200W console <b>1.5 hours</b></button>
+                  <br><br> -->
+                  <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled>Comes with a <b>Solar panel</b></button>
+                  <br><br>
+                  <button class="btn price-btn" style="background-color: #F7E4BD; border-radius: 10px;" disabled><b>R 1100</b></button>
+                  <br><br>
+                  <button type="submit" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 10px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Order package</button>
+                
+                </div>
               </div>
-              <br>
-              <!-- <a href="#" class="btn btn-primary" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">R 4500</a> -->
-              <div style="display: flex; align-items: center;">
-                <!-- <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 30px;" disabled><b>R 4500</b></button> -->
-                <!-- <button class="btn price-btn" style="background-color: #F7E4BD; color: #000; border-radius: 30px;" disabled><b>R 4500</b></button> -->
-                <button class="btn price-btn" style="border: 2px solid #000; color: #000; background-color: transparent; border-radius: 30px;" disabled><b>R 4500</b></button>
-
-                <span style="margin-right: 10px;"></span>
-                <a href="/register" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Purchase</a>
-            </div>
-            </div>
-          </div>
-
-          <div class="card" style="width: 90%; max-width: 18rem;">
-            <img class="card-img-top" src="static/imageB.png" alt="Card image cap" style="width: 100%;">
-            <div class="card-body" style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);">
-              <h5 class="card-title" style="color: #030606; font-family: Ubuntu; font-weight: 700; font-size: 16px;">Bluetti</h5>  
-              <p class="card-text" style="color: #696969; font-family: Ubuntu; font-weight: 400; font-size: 14px;">600W power station</p>
-              
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>60W laptop <b>10 hours</b></button>
-              <br>
-              <br>
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>200 W console <b>3 hours</b></button>
-              <br>
-              <br>
-              <button class="btn price-btn" style="background-color: #F7E4BD; color: ; border-radius: 10px;" disabled>Comes with <b>solar panel</b></button>
-              <br>
-              <br>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                  Select package
-                </label>
-              </div>
-              <br>
-              <!-- <a href="#" class="btn btn-primary" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">R 4500</a> -->
-              <div style="display: flex; align-items: center;">
-                <button class="btn price-btn" style="border: 2px solid #000; color: #000; background-color: transparent; border-radius: 30px;" disabled><b>R 4500</b></button>
-
-                <span style="margin-right: 10px;"></span>
-                <a href="/register" class="btn btn-primary purchase-btn" style="background: linear-gradient(259deg, #F1546E 0%, #F9BB39 100%); border-color: transparent; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); border-radius: 20px; color: black; font-family: Ubuntu; font-weight: 400; font-size: 16px;">Purchase</a>
-            </div>
-            </div>
-          </div>
-      
-        
-
-        <!-- Dropdown for Package Selection -->
-        <form action="{{ url_for('consumption') }}" method="post">
-        <!-- Next Button -->
-        <!-- <button type="submit" class="btn btn-dark mt-2">Next</button> -->
-        </form> 
-        <br>
-        <br>
-      </div>
+          </form>
+        </div>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Custom Script -->
-    <script>
-        function showPackageDetails() {
-            var selectedPackage = document.getElementById("packageSelection").value;
-            var packageTitle = document.getElementById("packageTitle");
-            var packageDescription = document.getElementById("packageDescription");
-            var packagePrice = document.getElementById("packagePrice");
-            var packageBenefits = document.getElementById("packageBenefits");
-
-            if (selectedPackage === "standard") {
-                packageTitle.textContent = "Standard Range";
-                packageDescription.textContent = "An inverter and battery solution that includes 5.5kW inverter, a 5kW battery and installation.";
-                packagePrice.textContent = "Price: R 50,000";
-                packageBenefits.innerHTML = "Benefits: <ul><li>Up to 5 hours of backup electricity</li><li>Run CCTV, Computer, WiFi, and fridge</li></ul>";
-            } else if (selectedPackage === "premium") {
-                packageTitle.textContent = "Premium Range";
-                packageDescription.textContent = "A solar-power-and-battery solution that includes solar panels with 3kWp generation capacity, a 5.5 kW inverter and 10-year warranty.";
-                packagePrice.textContent = "Price: R 75,000";
-                packageBenefits.innerHTML = "Benefits: <ul><li>Solar panels with 3kWp generation capacity</li><li>5.5 kW inverter and 10-year warranty</li></ul>";
-            }
-        }
-
-        const resizeOps = () => {
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
+              const resizeOps = () => {
         document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
       };
 
       resizeOps();
       window.addEventListener("resize", resizeOps);
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

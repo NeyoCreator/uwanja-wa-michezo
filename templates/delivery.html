@@ -73,27 +73,28 @@
     <div class="container">
         <!-- <h1>Delivery Process</h1> -->
         <br>
-        <h3 class="mb-4">Order tracking</h3>
+        <h3 class="mb-4">You are about to order the package, the following will happen.</h3>
 
         <div style="width: 126px; height: 30px; justify-content: center; align-items: flex-start; gap: 18px; display: inline-flex">
-            <div style="width: 25px; height: 25px; background: #F7E4BD; border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: #030606;">1</div>
+          <div style="width: 25px; height: 25px; background: linear-gradient(155deg, #F9BB39 0%, #F25B6B 100%); border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold;">1</div>
+            
+          <!-- <div style="width: 25px; height: 25px; background: #F7E4BD; border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: #030606;">1</div> -->
             <div style="width: 25px; height: 25px; background: #F7E4BD; border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: #030606;">2</div>
-            <div style="width: 25px; height: 25px; background: linear-gradient(155deg, #F9BB39 0%, #F25B6B 100%); border-radius: 9999px; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold;">3</div>
             
         </div>
         <br>
         <br>
 
         <!-- Alert Notification -->
-        <div class="alert alert-success" role="alert">
+        <!-- <div class="alert alert-success" role="alert">
             Your order was successful! Our team is now processing your information.any update will be sent to your email
-        </div>
+        </div> -->
 
         <!-- First Card - Assembly -->
         <div class="card" style="background-color: #F7E4BD; border: 2px solid #F9BB39;">
             <div class="card-body">
-                <h5 class="card-title">1. Assembly</h5>
-                <p class="card-text">Our skilled technicians are working diligently to assemble your product. This is a crucial step to ensure that all components are put together with precision.</p>
+                <h5 class="card-title">1. Sales Contact</h5>
+                <p class="card-text">Our Sales agent will contact you with regards to additional information.</p>
             </div>
         </div>
 
@@ -101,17 +102,24 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">2. Delivery</h5>
-                <p class="card-text">Your product is on its way! The estimated delivery date is [Insert Date]. Our delivery team is committed to ensuring a smooth and timely delivery to your doorstep.</p>
+                <p class="card-text">When you product is ready we will communicate with regards to delivery.</p>
             </div>
         </div>
 
         <!-- Third Card - Installation -->
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-body">
                 <h5 class="card-title">3. Installation</h5>
                 <p class="card-text">Congratulations! Your product has been delivered. Now, it's time for our experts to install the product at your location. Sit back and relax as we bring your vision to life.</p>
             </div>
-        </div>
+        </div> -->
+        <form method="post" action="/save_data" >
+          <br>
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          <button type="submit" class="btn btn-dark " onclick="showAlert();">Submit Order</button>
+          <br>
+        </form>
+ 
     </div>
 
     <!-- Bootstrap JS and jQuery -->
@@ -119,6 +127,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        //   function showAlert() {
+        // alert('Order submitted successfully!');
+        // return true;  // Continue the form submission
+        // }
       const resizeOps = () => {
         document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
       };
