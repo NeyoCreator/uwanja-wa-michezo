@@ -217,24 +217,19 @@ def process_selection3():
 
 @app.route('/get_data', methods=['GET'])
 def get_data():
-    #user_email = session['user_data']['email']
-    # data_ref = db.collection('backend').document('05_2024').get
-    data_ref = db.collection('backend').document('05_2024').collection('Basic')
-    # data_ref = db.collection('backend').document('05_2024').get()
+   
+    doc_ref = db.collection('backend').document('05_2024')
+    doc = doc_ref.get()
 
-    print(data_ref)
-    data = data_ref.get()
+    data = doc.to_dict()
+    basic_data = data.get('Basic', [])
+
+    data = basic_data
+
     print("data",data)
-
-    if data:
-        for key, value in data.sitems():
-            if isinstance(value, list):
-                for item in value:
-                    if isinstance(item, dict):
-                        for k, v in item.items():
-                            if isinstance(v, str):
-                                print(f"Key: {k}, Value: {v}")
-    return jsonify({'message': 'Data fetched successfully'})
+    # return jsonify({'message': 'Data fetched successfully'}) 
+    # return jsonify({'basic_data': basic_data}
+    return render_template('category.html', basic_data=basic_data)
 
 
 if __name__ == '__main__':
