@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      html, body {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+      }
+      body {
+        background-color: #F6F6F6;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      .checkout-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+      }
+      .checkout-header {
+          background-color: #F6F6F6;
+          padding: 20px;
+          border-bottom: 1px solid #ccc;
+      }
+      .checkout-body {
+          padding: 20px;
+      }
+      .checkout-footer {
+          background-color: #F6F6F6;
+          padding: 20px;
+          border-top: 1px solid #ccc;
+      }
+      .checkout-btn {
+          border-radius: 40px;
+          background: linear-gradient(to right, #f1546e, #f7a147);
+          color: #030606;
+          padding: 15px;
+          width: 150px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <h2 style="color: #F6F6F6; font-weight: 500;">Mwanga.</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/logout">Log-out</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Cart</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h3>Checkout</h3>
+            </div>
+            <div class="checkout-body">
+                <form action="/delivery" method="post">
+                    <div class="form-group">
+                        <label for="payment">Payment Method:</label>
+                        <select class="form-control" id="payment" name="payment">
+                            <option value="credit_card">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_number">Card Number:</label>
+                        <input type="text" class="form-control" id="card_number" name="card_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiration_date">Expiration Date:</label>
+                        <input type="date" class="form-control" id="expiration_date" name="expiration_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="security_code">Security Code:</label>
+                        <input type="text" class="form-control" id="security_code" name="security_code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bank_name">Bank Name:</label>
+                        <input type="text" class="form-control" id="bank_name" name="bank_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="account_number">Account Number:</label>
+                        <input type="text" class="form-control" id="account_number" name="account_number" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="routing_number">Routing Number:</label>
+                        <input type="text" class="form-control" id="routing_number" name="routing_number" required>
+                    </div> -->
+                    <div class="checkout-footer">
+                        <button class="btn checkout-btn" type="submit">Place Order</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

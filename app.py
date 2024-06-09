@@ -85,6 +85,10 @@ def register():
     print("Info: Redirecting to register page")
     return render_template('register.html')
 
+@app.route('/checkout', methods=['GET','POST'])
+def checkout():
+    return render_template('checkout.html')
+
 @app.route('/register_user', methods = ['GET','POST'])
 def register_user():
     print("Info: Registering user")
@@ -155,39 +159,45 @@ def save_data():
     return render_template('passData.html')
 
 @app.route('/delivery', methods=['GET','POST'])
-def delivery():
-    # Extract data from the session cookie
-        # session["user_data"]
-        # consumption_data = session.get('consumption_data', {})
-        # device_data = session.get('device_data', {})
-        print("called delivery",session['user'])
-        # email_name = session['user']
+def final_stage():
+    return render_template('delivery.html')
 
-        # Format the data for email
-        # email_body = f"Hello {email_name},\n\n"
-        # user_data.get('name', '')
 
-        # email_body += "New order made!\n\n"
-        # email_body += "Here are the details:\n"
-        # email_body += f"Name: {user_data.get('name', '')}\n"
-        # email_body += f"Email: {user_data.get('email', '')}\n"
-        # email_body += f"Location: {user_data.get('location', '')}\n\n"
-        # # email_body += f"Selected package: {session['selected_package']}\n\n"
-        email_body = f"Your order is being processed , our agents will get back to you regarding additional information. Thank you for chosing Mwanga.\n\n"
 
-        # link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
+# @app.route('/delivery', methods=['GET','POST'])
+# def delivery():
+#     # Extract data from the session cookie
+#         # session["user_data"]
+#         # consumption_data = session.get('consumption_data', {})
+#         # device_data = session.get('device_data', {})
+#         print("called delivery",session['user'])
+#         # email_name = session['user']
+
+#         # Format the data for email
+#         # email_body = f"Hello {email_name},\n\n"
+#         # user_data.get('name', '')
+
+#         # email_body += "New order made!\n\n"
+#         # email_body += "Here are the details:\n"
+#         # email_body += f"Name: {user_data.get('name', '')}\n"
+#         # email_body += f"Email: {user_data.get('email', '')}\n"
+#         # email_body += f"Location: {user_data.get('location', '')}\n\n"
+#         # # email_body += f"Selected package: {session['selected_package']}\n\n"
+#         email_body = f"Your order is being processed , our agents will get back to you regarding additional information. Thank you for chosing Mwanga.\n\n"
+
+#         # link = auth_user.generate_email_verification_link('neos25722@gmail.com', action_code_settings=None)
         
-        # # Send email
-        msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session["user"]])
-        msg.body = email_body
-        mail.send(msg)
+#         # # Send email
+#         msg = Message('Delivery Information', sender='noreply@app.com', recipients=['neo.andersonseb@gmail.com',session["user"]])
+#         msg.body = email_body
+#         mail.send(msg)
 
-        # session['consumption_data'] = consumption_data
-        db.collection(session['user']).document("data").set(session)
-        print("INFO : Database updated ")
+#         # session['consumption_data'] = consumption_data
+#         db.collection(session['user']).document("data").set(session)
+#         print("INFO : Database updated ")
         
         
-        return render_template('delivery.html')
+#         return render_template('delivery.html')
 
 
 @app.route('/about', methods=['GET','POST'])
