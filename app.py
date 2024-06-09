@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, session, redirect, url_for
+from flask import Flask, flash, jsonify, render_template, request, session, redirect, url_for
 from firebase_admin import credentials, firestore
 from firebase_admin import auth as auth_user
 import firebase_admin
@@ -225,15 +225,21 @@ def process_selection3():
     print(session['package'])
     return render_template('delivery.html')
 
-# @app.route('/confirmation/<package_id>')
-# def confirmation(package_id):
-#     # This page would show a confirmation message or further information
-#     return f'Confirmation page for package {package_id}'
+@app.route('/get_data', methods=['GET'])
+def get_data():
+   
+    doc_ref = db.collection('backend').document('05_2024')
+    doc = doc_ref.get()
 
-# @app.route('/confirmation/<package_id>')
-# def confirmation(package_id):
-#     # This page would show a confirmation message or further information
-#     return f'Confirmation page for package {package_id}'
+    data = doc.to_dict()
+    basic_data = data.get('Basic', [])
+
+    data = basic_data
+
+    print("data",data)
+    # return jsonify({'message': 'Data fetched successfully'}) 
+    # return jsonify({'basic_data': basic_data}
+    return render_template('category.html', basic_data=basic_data)
 
 
 if __name__ == '__main__':
